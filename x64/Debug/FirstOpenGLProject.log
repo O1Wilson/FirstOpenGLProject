@@ -1,3 +1,2 @@
 ﻿  hello.cpp
-C:\Users\Thetr\OneDrive\Documents\GitHub\FirstOpenGLProject\FirstOpenGLProject\hello.cpp(111,28): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-  FirstOpenGLProject.vcxproj -> C:\Users\Thetr\OneDrive\Documents\GitHub\FirstOpenGLProject\x64\Debug\FirstOpenGLProject.exe
+C:\Users\Thetr\OneDrive\Documents\GitHub\FirstOpenGLProject\FirstOpenGLProject\hello.cpp(124,28): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
