@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="glad.c" />
     <ClCompile Include="hello.cpp" />
+    <ClCompile Include="STB_Image.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="shader.h" />
