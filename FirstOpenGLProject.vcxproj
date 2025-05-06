@@ -19,16 +19,17 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="glad.c" />
-    <ClCompile Include="hello.cpp" />
-    <ClCompile Include="STB_Image.cpp" />
+    <ClCompile Include="external\glad.c" />
+    <ClCompile Include="external\STB_Image.cpp" />
+    <ClCompile Include="src\hello.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="shader.h" />
+    <None Include="shaders\shader.frag" />
+    <None Include="shaders\shader.vs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="shader.frag" />
-    <None Include="shader.vs" />
+    <ClInclude Include="include\shader.h" />
+    <ClInclude Include="include\stb_image.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
@@ -116,6 +117,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(ProjectDir)include;$(ProjectDir)external;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
