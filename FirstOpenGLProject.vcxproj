@@ -28,6 +28,7 @@
     <None Include="shaders\shader.vs" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\camera.h" />
     <ClInclude Include="include\shader.h" />
     <ClInclude Include="include\stb_image.h" />
   </ItemGroup>

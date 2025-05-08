@@ -18,27 +18,29 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="glad.c">
+    <ClCompile Include="external\glad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="hello.cpp">
+    <ClCompile Include="external\STB_Image.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="STB_Image.cpp">
+    <ClCompile Include="src\hello.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="shader.h">
+    <ClInclude Include="include\shader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\stb_image.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="shader.vs">
-      <Filter>Source Files\shaders</Filter>
-    </None>
-    <None Include="shader.frag">
-      <Filter>Source Files\shaders</Filter>
-    </None>
+    <None Include="shaders\shader.frag" />
+    <None Include="shaders\shader.vs" />
   </ItemGroup>
 </Project>

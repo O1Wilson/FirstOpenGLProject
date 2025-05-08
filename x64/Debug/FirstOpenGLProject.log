@@ -1,1 +1,4 @@
-﻿  FirstOpenGLProject.vcxproj -> C:\Users\Thetr\OneDrive\Documents\GitHub\FirstOpenGLProject\x64\Debug\FirstOpenGLProject.exe
+﻿  hello.cpp
+C:\Users\Thetr\OneDrive\Documents\GitHub\FirstOpenGLProject\FirstOpenGLProject\src\hello.cpp(183,22): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\Thetr\OneDrive\Documents\GitHub\FirstOpenGLProject\FirstOpenGLProject\src\hello.cpp(189,28): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+  FirstOpenGLProject.vcxproj -> C:\Users\Thetr\OneDrive\Documents\GitHub\FirstOpenGLProject\x64\Debug\FirstOpenGLProject.exe
