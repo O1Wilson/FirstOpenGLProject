@@ -40,7 +40,23 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="shaders\shader.frag" />
-    <None Include="shaders\shader.vs" />
+    <None Include="shaders\colors.frag">
+      <Filter>Source Files\shaders</Filter>
+    </None>
+    <None Include="shaders\colors.vs">
+      <Filter>Source Files\shaders</Filter>
+    </None>
+    <None Include="shaders\light_cube.frag">
+      <Filter>Source Files\shaders</Filter>
+    </None>
+    <None Include="shaders\light_cube.vs">
+      <Filter>Source Files\shaders</Filter>
+    </None>
+    <None Include="shaders\shader.frag">
+      <Filter>Source Files\shaders</Filter>
+    </None>
+    <None Include="shaders\shader.vs">
+      <Filter>Source Files\shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

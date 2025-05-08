@@ -24,6 +24,10 @@
     <ClCompile Include="src\hello.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="shaders\colors.frag" />
+    <None Include="shaders\colors.vs" />
+    <None Include="shaders\light_cube.frag" />
+    <None Include="shaders\light_cube.vs" />
     <None Include="shaders\shader.frag" />
     <None Include="shaders\shader.vs" />
   </ItemGroup>
