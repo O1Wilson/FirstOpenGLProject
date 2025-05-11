@@ -80,11 +80,19 @@ public:
     }
 
     void ProcessMouseScroll(float yoffset) {
-        Zoom -= (float)yoffset;
-        if (Zoom < 1.0f)
-            Zoom = 1.0f;
-        if (Zoom > 45.0f)
-            Zoom = 45.0f;
+        if (glfwGetKey(glfwGetCurrentContext(), GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS) {
+            MovementSpeed += yoffset * 0.1f;
+            if (MovementSpeed < 0.75f)
+                MovementSpeed = 0.75f;
+            if (MovementSpeed > 10.0f)
+                MovementSpeed = 10.0f;
+        } else {
+            Zoom -= (float)yoffset;
+            if (Zoom < 1.0f)
+                Zoom = 1.0f;
+            if (Zoom > 45.0f)
+                Zoom = 45.0f;
+        }
     }
 
 private:
