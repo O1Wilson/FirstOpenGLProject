@@ -64,7 +64,7 @@ class Mesh {
 				else if (name == "texture_height")
 					number = std::to_string(heightNr++);
 
-				shader.setInt(("material." + name + number).c_str(), i);
+				glUniform1i(glGetUniformLocation(shader.ID, (name + number).c_str()), i);
 				glBindTexture(GL_TEXTURE_2D, textures[i].id);
 			}
 			glBindVertexArray(VAO);

@@ -41,6 +41,9 @@
     <ClInclude Include="include\mesh.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\model.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="shaders\colors.frag">
@@ -59,6 +62,12 @@
       <Filter>Source Files\shaders</Filter>
     </None>
     <None Include="shaders\shader.vs">
+      <Filter>Source Files\shaders</Filter>
+    </None>
+    <None Include="shaders\model.frag">
+      <Filter>Source Files\shaders</Filter>
+    </None>
+    <None Include="shaders\model.vs">
       <Filter>Source Files\shaders</Filter>
     </None>
   </ItemGroup>

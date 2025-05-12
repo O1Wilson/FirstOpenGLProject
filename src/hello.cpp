@@ -8,6 +8,7 @@
 
 #include <shader.h>
 #include <camera.h>
+#include <model.h>
 
 #include <iostream>
 
@@ -20,7 +21,6 @@ unsigned int loadTexture(const char* path);
 const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 600;
 
-// Camera
 Camera camera(glm::vec3(0.0f, 0.0f, 3.0f));
 float lastX = SCR_WIDTH / 2.0f;
 float lastY = SCR_HEIGHT / 2.0f;
@@ -63,6 +63,9 @@ int main() {
 
 	Shader lightingShader("shaders/colors.vs", "shaders/colors.frag");
 	Shader lightCubeShader("shaders/light_cube.vs", "shaders/light_cube.frag");
+	Shader myShader("shaders/model.vs", "shaders/model.frag");
+
+	Model myModel("assets/backpack/backpack.obj");
 
 	float vertices[] = {
 		// Positions          // Normals           // Texture Coords
@@ -218,7 +221,7 @@ int main() {
 		lightingShader.setFloat("pointLights[3].linear", 0.09f);
 		lightingShader.setFloat("pointLights[3].quadratic", 0.032f);
 		// spotLight
-		lightingShader.setVec3("spotLight.position", camera.Position);
+		/*lightingShader.setVec3("spotLight.position", camera.Position);
 		lightingShader.setVec3("spotLight.direction", camera.Front);
 		lightingShader.setVec3("spotLight.ambient", 0.0f, 0.0f, 0.0f);
 		lightingShader.setVec3("spotLight.diffuse", 1.0f, 1.0f, 1.0f);
@@ -227,7 +230,7 @@ int main() {
 		lightingShader.setFloat("spotLight.linear", 0.09f);
 		lightingShader.setFloat("spotLight.quadratic", 0.032f);
 		lightingShader.setFloat("spotLight.cutOff", glm::cos(glm::radians(12.5f)));
-		lightingShader.setFloat("spotLight.outerCutOff", glm::cos(glm::radians(15.0f)));
+		lightingShader.setFloat("spotLight.outerCutOff", glm::cos(glm::radians(15.0f)));*/
 
 		glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
 		lightingShader.setMat4("projection", projection);
@@ -260,7 +263,7 @@ int main() {
 		for (unsigned int i = 0; i < 4; i++) {
 			model = glm::mat4(1.0f);
 			model = glm::translate(model, pointLightPositions[i]);
-			model = glm::scale(model, glm::vec3(0.2f)); // Make it a smaller cube
+			model = glm::scale(model, glm::vec3(0.2f));
 			lightCubeShader.setMat4("model", model);
 			glDrawArrays(GL_TRIANGLES, 0, 36);
 		}
@@ -345,8 +348,7 @@ unsigned int loadTexture(char const* path) {
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
 		stbi_image_free(data);
-	}
-	else {
+	} else {
 		std::cout << "Texture failed to load at path: " << path << std::endl;
 		stbi_image_free(data);
 	}
