@@ -8,7 +8,6 @@
 
 #include <shader.h>
 #include <camera.h>
-#include <model.h>
 
 #include <iostream>
 
@@ -63,9 +62,6 @@ int main() {
 
 	Shader lightingShader("shaders/colors.vs", "shaders/colors.frag");
 	Shader lightCubeShader("shaders/light_cube.vs", "shaders/light_cube.frag");
-	Shader myShader("shaders/model.vs", "shaders/model.frag");
-
-	Model myModel("assets/backpack/backpack.obj");
 
 	float vertices[] = {
 		// Positions          // Normals           // Texture Coords
