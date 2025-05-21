@@ -61,9 +61,6 @@ vec3 CalcSpotLight(SpotLight light, vec3 normal, vec3 fragPos, vec3 viewDir);
 
 void main() {
     vec4 texColor = texture(texture1, TexCoords);
-
-    if (texColor.a < 0.1)
-        discard;
     
     vec3 norm = normalize(Normal);
     vec3 viewDir = normalize(viewPos - FragPos);
@@ -73,7 +70,7 @@ void main() {
     for(int i = 0; i < NR_POINT_LIGHTS; i++)
         result += CalcPointLight(pointLights[i], norm, FragPos, viewDir);
     
-    result += CalcSpotLight(spotLight, norm, FragPos, viewDir);
+    //result += CalcSpotLight(spotLight, norm, FragPos, viewDir);
 
     result *= texColor.rgb;
     FragColor = vec4(result, texColor.a);

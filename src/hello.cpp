@@ -60,6 +60,8 @@ int main() {
 	}
 
 	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	Shader lightingShader("shaders/colors.vs", "shaders/colors.frag");
 	Shader lightCubeShader("shaders/light_cube.vs", "shaders/light_cube.frag");
@@ -188,10 +190,10 @@ int main() {
 
 	unsigned int diffuseMap = loadTexture("assets/container2.png");
 	unsigned int specularMap = loadTexture("assets/container2_specular.png");
-	unsigned int floorTexture = loadTexture("assets/dirt.png", GL_REPEAT, GL_REPEAT);
-	unsigned int transparentTexture = loadTexture("assets/grass.png", GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE);
+	unsigned int floorTexture = loadTexture("assets/concrete.jpg", GL_REPEAT, GL_REPEAT);
+	unsigned int transparentTexture = loadTexture("assets/window.png", GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE);
 
-	vector<glm::vec3> vegetation {
+	vector<glm::vec3> windows {
 		glm::vec3(-1.5f, 0.0f, -0.48f),
 		glm::vec3(1.5f, 0.0f, 0.51f),
 		glm::vec3(0.0f, 0.0f, 0.7f),
@@ -210,6 +212,12 @@ int main() {
 		lastFrame = currentFrame;
 
 		processInput(window);
+
+		std::map<float, glm::vec3> sorted;
+		for (unsigned int i = 0; i < windows.size(); i++) {
+			float distance = glm::length(camera.Position - windows[i]);
+			sorted[distance] = windows[i];
+		}
 
 		glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -235,18 +243,6 @@ int main() {
 			lightingShader.setFloat(base + ".linear", 0.09f);
 			lightingShader.setFloat(base + ".quadratic", 0.032f);
 		}
-
-		// Spotlight
-		lightingShader.setVec3("spotLight.position", camera.Position);
-		lightingShader.setVec3("spotLight.direction", camera.Front);
-		lightingShader.setVec3("spotLight.ambient", 0.0f, 0.0f, 0.0f);
-		lightingShader.setVec3("spotLight.diffuse", 1.0f, 1.0f, 1.0f);
-		lightingShader.setVec3("spotLight.specular", 1.0f, 1.0f, 1.0f);
-		lightingShader.setFloat("spotLight.constant", 1.0f);
-		lightingShader.setFloat("spotLight.linear", 0.09f);
-		lightingShader.setFloat("spotLight.quadratic", 0.032f);
-		lightingShader.setFloat("spotLight.cutOff", glm::cos(glm::radians(12.5f)));
-		lightingShader.setFloat("spotLight.outerCutOff", glm::cos(glm::radians(15.0f)));
 
 		glm::mat4 view = camera.GetViewMatrix();
 		glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
@@ -278,10 +274,9 @@ int main() {
 		glBindVertexArray(transparentVAO);
 		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, transparentTexture);
-		for (unsigned int i = 0; i < vegetation.size(); i++)
-		{
+		for (std::map<float, glm::vec3>::reverse_iterator it = sorted.rbegin(); it != sorted.rend(); ++it) {
 			model = glm::mat4(1.0f);
-			model = glm::translate(model, vegetation[i]);
+			model = glm::translate(model, it->second);
 			lightingShader.setMat4("model", model);
 			glDrawArrays(GL_TRIANGLES, 0, 6);
 		}
