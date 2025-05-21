@@ -1,3 +1,6 @@
 ﻿  hello.cpp
-C:\Users\Thetr\OneDrive\Documents\GitHub\FirstOpenGLProject\FirstOpenGLProject\src\hello.cpp(178,22): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\Thetr\OneDrive\Documents\GitHub\FirstOpenGLProject\FirstOpenGLProject\include\mesh.h(71,45): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+  (compiling source file 'src/hello.cpp')
+  
+C:\Users\Thetr\OneDrive\Documents\GitHub\FirstOpenGLProject\FirstOpenGLProject\src\hello.cpp(208,22): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   FirstOpenGLProject.vcxproj -> C:\Users\Thetr\OneDrive\Documents\GitHub\FirstOpenGLProject\x64\Debug\FirstOpenGLProject.exe
