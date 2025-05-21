@@ -95,5 +95,3 @@ Throughout the project, I followed the LearnOpenGL tutorials. Thanks to the read
 ### Source Code & GitHub History
 
 All the code for this project is available on my GitHub repository, including the full source, shaders, and supporting assets. You can actually follow along with how I built each part of the renderer from the ground up, step by step by checking out the Commit Graph. It's a pretty honest snapshot of how I approached the project and how it evolved over time.
-
-👉 [GitHub Repository – OpenGL Renderer](https://github.com/O1Wilson/OpenGLRenderingEngine)
