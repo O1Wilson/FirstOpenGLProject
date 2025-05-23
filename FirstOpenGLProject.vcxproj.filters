@@ -70,5 +70,11 @@
     <None Include="shaders\model.vs">
       <Filter>Source Files\shaders</Filter>
     </None>
+    <None Include="shaders\framebuffer.vs">
+      <Filter>Source Files\shaders</Filter>
+    </None>
+    <None Include="shaders\framebuffer.frag">
+      <Filter>Source Files\shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>
