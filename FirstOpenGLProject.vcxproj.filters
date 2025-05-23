@@ -76,5 +76,11 @@
     <None Include="shaders\framebuffer.frag">
       <Filter>Source Files\shaders</Filter>
     </None>
+    <None Include="shaders\skybox.frag">
+      <Filter>Source Files\shaders</Filter>
+    </None>
+    <None Include="shaders\skybox.vs">
+      <Filter>Source Files\shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

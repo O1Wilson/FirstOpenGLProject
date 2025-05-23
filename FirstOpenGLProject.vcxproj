@@ -34,6 +34,8 @@
     <None Include="shaders\model.vs" />
     <None Include="shaders\shader.frag" />
     <None Include="shaders\shader.vs" />
+    <None Include="shaders\skybox.frag" />
+    <None Include="shaders\skybox.vs" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\camera.h" />
