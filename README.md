@@ -96,13 +96,13 @@ What wasn't easy though is how these windows interacted with depth testing. I fo
 
 This was really interesting for me because there is a ton of ways people have tried to solve this issue for blending. I used a sorted technique, but I did research into the many order independent transparency (OIT) techniques—both accurate and approximate—which exposed me to some advanced areas of blending (like using framebuffers, or depth peeling).
 
-![opengl-blending](https://github.com/user-attachments/assets/605f2baf-ef5b-4ddd-a5ba-c0b0ef511941)
+![Grass texture, rendered by discarding fragments.](css/images/opengl-blending.png)  
 *Grass texture, rendered by discarding fragments.*
 
-![opengl-blending2](https://github.com/user-attachments/assets/4c11adeb-1461-4ed2-8994-2bc09d80a2b2)
+![Semi-Transparent window, blended with the background container.](css/images/opengl-blending2.png)  
 *Semi-Transparent window, blended with the background container.*
 
-![opengl-depthblend](https://github.com/user-attachments/assets/577de3ad-d130-4853-ada2-fed279cd4cf1)
+![Depth testing fix by sorting the order in which transparent objects render.](css/images/opengl-depthblend.png)  
 *Depth testing fix by sorting the order in which transparent objects render.*
 
 ---
@@ -115,19 +115,19 @@ This works because you are essentially rendering the entire screen into a textur
 
 Once I had set it up, it was super easy adding post processing effects in the fragment shader. I got to apply some of the math I’ve been learning here—now that I can use Kernel effects, which are just a small matrix-like array of values. I used this [website](https://setosa.io/ev/image-kernels/) to visualize the effects of whatever values are used in the kernel. Overall, the framebuffers are a super helpful tool when programming graphics, so this was a really fun chapter.
 
-![opengl-blurred](https://github.com/user-attachments/assets/b0afdac5-a3c9-4fba-a5d3-af9d995a77ab)
+![Blur effect, using a kernel.](css/images/opengl-blurred.png)  
 *Blur effect, using a kernel.*
 
-![opengl-inversion](https://github.com/user-attachments/assets/82b72a02-1a96-4d8c-a3b4-ce963a7f5808)
+![Inversion effect, by inverting the texture color.](css/images/opengl-inversion.png)  
 *Inversion effect, by inverting the texture color.*
 
-![opengl-acidtrip](https://github.com/user-attachments/assets/25771bba-eb4e-44e7-ad69-f52094ac0e4c)
+![Sharpen effect, to simulate an Acid trip.](css/images/opengl-acidtrip.png)  
 *Sharpen effect, to simulate an Acid trip.*
 
-![opengl-grayscale](https://github.com/user-attachments/assets/d97edf95-ec4b-47f7-953e-ea9611ed9a44)
+![Grayscaled effect, by averaging the RGB values.](css/images/opengl-grayscale.png)  
 *Grayscaled effect, by averaging the RGB values, and accounting for the human eye's sensitivity to green.*
 
-![opengl-edgedetection](https://github.com/user-attachments/assets/2e928816-5543-478f-8fdf-6661e575b28e)
+![Edge detection, which is similar to the sharpen kernel.](css/images/opengl-edgedetection.png)  
 *Edge detection, which is similar to the sharpen kernel, but darkens the surroundings.*
 
 ---
@@ -138,19 +138,19 @@ I finally got to do some major changes to the scene during this section! I first
 
 I got to do some fun calculations for reflection and refraction techniques. This type of math is always my favorite, as it uses vectors and normals to calculate and draw a reflection/refraction vector that maps to texture coordinates. These parts always feel so satisfying because it's when all of my previous work on the project comes together to form the remaining pieces of the puzzle. I 100% left this part feeling satisfied in my work so far.
 
-![opengl-skybox](https://github.com/user-attachments/assets/de5ebd89-5702-4c97-91c7-fd6f5a9583df)
+![Skybox cubemap rendering in the scene.](css/images/opengl-skybox.png)  
 *Skybox cubemap rendering in the scene.*
 
-![opengl-refraction](https://github.com/user-attachments/assets/e95cef22-a58c-4e2c-8278-3fb42266a6aa)
+![Environmental mapping, reflecting the environment around the cube.](css/images/opengl-refraction.png)  
 *Environmental mapping, reflecting the environment around the cube.*
 
-![cubemaps_reflection_theory](https://github.com/user-attachments/assets/630474dc-9402-465e-a55f-2f431dc4dbdb)
+![Reflection theory diagram.](css/images/cubemaps_reflection_theory.png)  
 *Reflection theory diagram. Detailing the view direction vector **I**, the Normal vector of the cube **N**, and the reflection vector **R** which finds the texture coords of the cubemap.*
 
-![opengl-refraction](https://github.com/user-attachments/assets/acb1f610-b44e-4c0a-aef9-003f6637c2bd)
+![Environmental mapping, refracting the light from the environment.](css/images/opengl-reflection.png)  
 *Environmental mapping, refracting the light from the environment around the cube.*
 
-![cubemaps_refraction_theory](https://github.com/user-attachments/assets/8d79f308-6777-423c-8749-91507e37adfa)
+![Refraction theory diagram.](css/images/cubemaps_refraction_theory.png)  
 *Refraction theory diagram. Detailing Snell's law, containing the view direction vector **I**, the Normal vector of the refractive object **N**, and the refraction vector **R** which finds the texture coords of the cubemap.*
 
 ---
