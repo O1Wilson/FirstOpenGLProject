@@ -47,6 +47,7 @@ struct SpotLight {
 in vec3 FragPos;
 in vec3 Normal;
 in vec2 TexCoords;
+in vec3 Position;
 
 uniform vec3 viewPos;
 uniform DirLight dirLight;
@@ -54,6 +55,8 @@ uniform PointLight pointLights[NR_POINT_LIGHTS];
 uniform SpotLight spotLight;
 uniform Material material;
 uniform sampler2D texture1;
+uniform vec3 cameraPos;
+uniform samplerCube skybox;
 
 vec3 CalcDirLight(DirLight light, vec3 normal, vec3 viewDir);
 vec3 CalcPointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir);
@@ -73,7 +76,15 @@ void main() {
     //result += CalcSpotLight(spotLight, norm, FragPos, viewDir);
 
     result *= texColor.rgb;
-    FragColor = vec4(result, 1.0);
+
+    float ratio = 1.00 / 1.52;
+    vec3 I = normalize(Position - cameraPos);
+    vec3 R = refract(I, norm, ratio);
+    vec3 refraction = texture(skybox, R).rgb;
+
+    vec3 finalColor = mix(result, refraction, 1.0);
+
+    FragColor = vec4(finalColor, 1.0);
 }
 
 vec3 CalcDirLight(DirLight light, vec3 normal, vec3 viewDir) {
