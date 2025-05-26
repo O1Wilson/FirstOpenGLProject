@@ -84,6 +84,77 @@ Afterwards I played around with Stencil Testing, which I felt was super valuable
 
 ---
 
+### 7. Blending
+
+This was a really interesting part of the project for me. Although not as math heavy as the previous section, my eyes were still opened by the complexity of blending. I expected this to be a simple chapter, seeing as how the blending equations were quite intuitive and easy to understand, but once I realized how the depth buffer interacts with transparent objects it became much more intriguing.
+
+I started off with some simple fragment discarding, using a grass texture (the grass is on a transparent white background). It involved me mapping normals to the texture, and then modifying the way OpenGL samples textures. OpenGL interpolates the border values with the next repeated value of the texture, but since I'm using transparent values, the top of the texture image gets its transparent value interpolated with the bottom border's solid color value. This results in a white border around the quad. I solved this by setting the Texture Parameter to use `GL_CLAMP_TO_EDGE`.
+
+After that I started on actual blending, using a red window texture. The blending equation is actually really simple—fusing the colors based on the alpha value of the source texture and storing it in the color buffer. OpenGL already had a bunch of functions built for this, so it was really easy.
+
+What wasn't easy though is how these windows interacted with depth testing. I found that when looking through any transparent window, all other windows behind would vanish. This is because when writing to the depth buffer, the depth test does not check if the fragment has transparency or not, therefore it acts as if it is an opaque object. So to make blending work, I had to draw the most distant window first. By sorting the objects based on the distance from my camera's position vector, I solved the issue.
+
+This was really interesting for me because there is a ton of ways people have tried to solve this issue for blending. I used a sorted technique, but I did research into the many order independent transparency (OIT) techniques—both accurate and approximate—which exposed me to some advanced areas of blending (like using framebuffers, or depth peeling).
+
+![opengl-blending](https://github.com/user-attachments/assets/605f2baf-ef5b-4ddd-a5ba-c0b0ef511941)
+*Grass texture, rendered by discarding fragments.*
+
+![opengl-blending2](https://github.com/user-attachments/assets/4c11adeb-1461-4ed2-8994-2bc09d80a2b2)
+*Semi-Transparent window, blended with the background container.*
+
+![opengl-depthblend](https://github.com/user-attachments/assets/577de3ad-d130-4853-ada2-fed279cd4cf1)
+*Depth testing fix by sorting the order in which transparent objects render.*
+
+---
+
+### 8. Post Processing
+
+This was a pretty exciting section of this project. I got to learn about framebuffers, which are basically a bitmap for the current frame. Framebuffers are cool however, because you can do a bunch of Post processing effects, or Mirrors in your scene.
+
+This works because you are essentially rendering the entire screen into a texture on an invisible quad in front of the camera. I also got to experiment with the different ways you can set up your framebuffer. I ended up creating and using a texture, depth, and stencil buffer all combined into the framebuffer.
+
+Once I had set it up, it was super easy adding post processing effects in the fragment shader. I got to apply some of the math I’ve been learning here—now that I can use Kernel effects, which are just a small matrix-like array of values. I used this [website](https://setosa.io/ev/image-kernels/) to visualize the effects of whatever values are used in the kernel. Overall, the framebuffers are a super helpful tool when programming graphics, so this was a really fun chapter.
+
+![opengl-blurred](https://github.com/user-attachments/assets/b0afdac5-a3c9-4fba-a5d3-af9d995a77ab)
+*Blur effect, using a kernel.*
+
+![opengl-inversion](https://github.com/user-attachments/assets/82b72a02-1a96-4d8c-a3b4-ce963a7f5808)
+*Inversion effect, by inverting the texture color.*
+
+![opengl-acidtrip](https://github.com/user-attachments/assets/25771bba-eb4e-44e7-ad69-f52094ac0e4c)
+*Sharpen effect, to simulate an Acid trip.*
+
+![opengl-grayscale](https://github.com/user-attachments/assets/d97edf95-ec4b-47f7-953e-ea9611ed9a44)
+*Grayscaled effect, by averaging the RGB values, and accounting for the human eye's sensitivity to green.*
+
+![opengl-edgedetection](https://github.com/user-attachments/assets/2e928816-5543-478f-8fdf-6661e575b28e)
+*Edge detection, which is similar to the sharpen kernel, but darkens the surroundings.*
+
+---
+
+### 9. Cubemaps and Environmental Mapping
+
+I finally got to do some major changes to the scene during this section! I first added a skybox, which was rendered using a cubemap, and was pretty straightforward. But where this got really fun was messing around with environmental mapping.
+
+I got to do some fun calculations for reflection and refraction techniques. This type of math is always my favorite, as it uses vectors and normals to calculate and draw a reflection/refraction vector that maps to texture coordinates. These parts always feel so satisfying because it's when all of my previous work on the project comes together to form the remaining pieces of the puzzle. I 100% left this part feeling satisfied in my work so far.
+
+![opengl-skybox](https://github.com/user-attachments/assets/de5ebd89-5702-4c97-91c7-fd6f5a9583df)
+*Skybox cubemap rendering in the scene.*
+
+![opengl-refraction](https://github.com/user-attachments/assets/e95cef22-a58c-4e2c-8278-3fb42266a6aa)
+*Environmental mapping, reflecting the environment around the cube.*
+
+![cubemaps_reflection_theory](https://github.com/user-attachments/assets/630474dc-9402-465e-a55f-2f431dc4dbdb)
+*Reflection theory diagram. Detailing the view direction vector **I**, the Normal vector of the cube **N**, and the reflection vector **R** which finds the texture coords of the cubemap.*
+
+![opengl-refraction](https://github.com/user-attachments/assets/acb1f610-b44e-4c0a-aef9-003f6637c2bd)
+*Environmental mapping, refracting the light from the environment around the cube.*
+
+![cubemaps_refraction_theory](https://github.com/user-attachments/assets/8d79f308-6777-423c-8749-91507e37adfa)
+*Refraction theory diagram. Detailing Snell's law, containing the view direction vector **I**, the Normal vector of the refractive object **N**, and the refraction vector **R** which finds the texture coords of the cubemap.*
+
+---
+
 ### Learning Process
 
 Even though this was my first OpenGL project, I had a solid foundation going in. I'd already read _3D Math Primer for Graphics and Game Development_ (Fletcher Dunn) and _Foundations of Game Engine Development_ by Eric Lengyel, as well as a strong theoretical understanding of linear algebra from Gilbert Strang's textbooks. Those books helped a lot with the math side of things.
