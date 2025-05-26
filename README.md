@@ -18,7 +18,7 @@ I started with rendering simple primitives: a triangle, then a square, and final
 ![A rotating cube, textured with an image of my friend's face.](css/images/opengl-cube.png)  
 *A rotating cube, textured with an image of my friend's face.*
 
-https://github.com/user-attachments/assets/944889cc-bb44-40c2-a25e-2117f51b66d9
+![Multiple rotating cube, textured with an image of my friend's face.](css/videos/opengl-cubes.mp4)  
 *Multiple rotating cubes, textured with an image of my friend's face!*
 
 ---
@@ -27,7 +27,7 @@ https://github.com/user-attachments/assets/944889cc-bb44-40c2-a25e-2117f51b66d9
 
 Next, I added a camera system with basic movement + zoom controls. This made navigating the scene possible and laid the groundwork for interacting with 3D space. It was cool seeing how OpenGL has so much support for Input mapping, which was something I was not expecting going into this project.
 
-https://github.com/user-attachments/assets/30b52ccd-67e0-4879-b19f-83323796b024
+![Input mapped camera system in a more complex scene.](css/videos/opengl-camera.mp4)  
 *Input mapped camera system. (in a more complex scene)*
 
 ---
